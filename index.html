@@ -84,15 +84,15 @@
                 }
             });
         }
-        function setEditing (todoId) {
-                todos.forEach(function(todo){ 
+        const setEditing = todoId => {
+                todos.forEach( todo =>{ 
                     if (todo.id === todoId) {
                         todo.isEditing = true;
                     }
                 });
         }
-        function updateTodo (todoId, newTitle, newDate) {
-            todos.forEach(function (todo) {
+        const updateTodo = (todoId, newTitle, newDate) => {
+            todos.forEach(todo => {
                 if (todo.id === todoId) {
                     todo.title = newTitle;
                     todo.dueDate = newDate;
@@ -112,12 +112,20 @@
             createTodo(title, dueDate);
             render();
         }
+        /*
         function deleteTodo (event) {
             const deleteButton = event.target;
             const idToDelete = deleteButton.id;
             removeTodo(idToDelete);
             
             render();
+        }
+        */
+        const onDelete = todoToDelete => {
+            return () => {
+                removeTodo(todoToDelete.id);
+            render();
+            }
         }
         function checkTodo(event) {
             const checkbox = event.target;
@@ -173,7 +181,7 @@
                     updateButton.dataset.todoId = todo.id;
                     updateButton.onclick = onUpdate;
                     element.appendChild(updateButton);
-                } else {
+                  } else {
                     element.innerText = todo.title + ' ' + todo.dueDate;
 
                     const checkbox = document.createElement('input');
@@ -194,12 +202,16 @@
                     editButton.onclick = onEdit; 
                     editButton.dataset.todoId = todo.id; 
                     element.appendChild(editButton);
-
+                    
                     const deleteButton = document.createElement('button');
                     deleteButton.innerText = 'Delete';
                     deleteButton.style = 'margin-left: 12px;';
+                    
+                      /*
                     deleteButton.onclick = deleteTodo; 
                     deleteButton.id = todo.id; 
+                    */
+                    deleteButton.onClick = onDelete(todo);
                     element.appendChild(deleteButton);
                     
 
