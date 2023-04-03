@@ -173,47 +173,4 @@
                     updateButton.dataset.todoId = todo.id;
                     updateButton.onclick = onUpdate;
                     element.appendChild(updateButton);
-                } else {
-                    element.innerText = todo.title + ' ' + todo.dueDate;
-
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox';
-                    checkbox.onChange = checkTodo;
-                    checkbox.dataset.todoId = todo.id;
-                    if (todo.isDone === true) {
-                        checkbox.checked = true;
-                    }
-                    else {
-                            checkbox.checked = false;
-                    }
-                    element.prepend(checkbox);
-
-                    const editButton = document.createElement('button');
-                    editButton.innerText = 'Edit';
-                    editButton.style = 'margin-left: 12px;';
-                    editButton.onclick = onEdit; 
-                    editButton.dataset.todoId = todo.id; 
-                    element.appendChild(editButton);
-
-                    const deleteButton = document.createElement('button');
-                    deleteButton.innerText = 'Delete';
-                    deleteButton.style = 'margin-left: 12px;';
-                    deleteButton.onclick = deleteTodo; 
-                    deleteButton.id = todo.id; 
-                    element.appendChild(deleteButton);
-                    
-
-                    const todolist = document.getElementById('todo-list'); 
-                    todolist.appendChild(element);
-                }
-                
-                
-            } ); 
-            
-             
-        }
-
-        render();
-    </script>    
-</body>
-</html>
+                } 
